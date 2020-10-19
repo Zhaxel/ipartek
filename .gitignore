@@ -1,0 +1,6 @@
+# Carpetas y ficheros ignorados
+
+/bin/
+/.classpath
+/.project
+/.settings
