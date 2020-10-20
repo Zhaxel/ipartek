@@ -3,6 +3,11 @@
  */
 package com.ipartek.excepciones;
 
+import java.io.File;
+import java.util.Scanner;
+
+import com.ipartek.pojo.Persona;
+
 /**
  * 
  * Realizar un programa que lance un número aleatorio del 1 al 6. Según el
@@ -29,7 +34,58 @@ public class Ejercicio5 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		Persona p = null;
+		int[] array = { 1 };
+
+		try {
+
+			do {
+				int r = (int) Math.floor(Math.random() * 6 + 1);
+				System.out.println("Se ha obtenido el número: " + r);
+
+				switch (4) {
+				case 1: // Arithmetic
+					System.out.println(
+							"Se va a producir una ArithmeticException, fallo que ocure cuando se produce una condición aritmética excepcional.\nPresione enter para continuar ");
+					sc.nextLine();
+					r = 5 / 0;
+					break;
+				case 2: // Nullpointer
+					System.out.println(
+							"Se va a producir una NullPointerExcption, fallo que ocurre cuando se quiere un objeto de una posición en el que no existe objeto");
+					p.getAge();
+					break;
+				case 3: // NumberFormatException
+					System.out.println(
+							"Se va a producir una NumberFormatException, fallo que ocurre cuando se intenta transformar un string sin formato numérico a numero. Introduzca una letra para provocarla.");
+					r = Integer.parseInt(sc.nextLine());
+					break;
+
+				case 4: // SecurityException
+					File f = new File(
+							System.getProperty("user.home") + System.getProperty("file.separator") + "test_directory");
+					f.mkdir();
+					break;
+				case 5: // NegativeArrayException
+
+					break;
+				case 6: // IOException
+
+					break;
+
+				default:
+					break;
+				}
+			} while (true);
+		} catch (ArithmeticException e) {
+			System.err.println(e.getMessage());
+		} catch (NullPointerException e) {
+			System.err.println(e.getMessage());
+		} catch (NumberFormatException e) {
+			System.err.println(e.getMessage());
+		}
 
 	}
 
