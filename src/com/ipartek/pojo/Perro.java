@@ -71,8 +71,9 @@ public class Perro {
 
 	@Override
 	public String toString() {
-		return "Perro [name=" + name + ", race=" + race + ", story=" + story + ", weight=" + weight + ", isVaccinated="
-				+ isVaccinated + "]";
+		return "[" + name + "]\n> Raza:\t\t" + race + "\n> Peso:\t\t" + weight + "Kg\n> Vacunado:\t" + isVaccinated
+				+ "\n> Historia:\t" + story;
+
 	}
 
 }

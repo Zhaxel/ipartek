@@ -16,6 +16,7 @@ public class AppPerrera {
 
 	static Scanner sc = null;
 	static ArrayList<Perro> list = new ArrayList<Perro>();
+	static Perro dog = null; // Variable para ir creando y recogiendo los perros
 	static String option = ""; // Variable para recoger la opción escogida por el usuario
 
 	public static void main(String[] args) {
@@ -28,19 +29,19 @@ public class AppPerrera {
 
 		// TODO Añadir resto de opciones y utilizar constantes
 		switch (option) {
-		case "1":
+		case "1": // READ
 			showDogs();
 			break;
 
-		case "2":
+		case "2": // CREATE
 
 			break;
 
-		case "3":
+		case "3": // DELETE
 
 			break;
 
-		case "4":
+		case "4": // UPDATE
 
 			break;
 
@@ -59,14 +60,10 @@ public class AppPerrera {
 		final String[] DOGS_NAMES = { "Laika", "Hachiko", "Balto", "Rin tin tin", "Stubby", "Pancho", "Greyfiars Bobby",
 				"Smoky", };
 
-		// int count = 1;
-		Perro dog = new Perro();
-
 		for (int i = 0; i < DOGS_NAMES.length; i++) {
-
+			dog = new Perro();
 			dog.setName(DOGS_NAMES[i]);
 			list.add(dog);
-
 		}
 
 	}// end-initApp
@@ -79,7 +76,7 @@ public class AppPerrera {
 	private static void showMenu() {
 		System.out.println("*******************************");
 		System.out.println("1.- Listar todos los perros\n" + "2.- Registrar un perro nuevo\n"
-				+ "3.- Dar de baja un perro\n" + "4.- Salir");
+				+ "3.- Dar de baja un perro\n" + "4.- Actualizar perro \n" + "5.- Salir");
 		System.out.println("*******************************");
 		// TODO gestionar errores
 		option = sc.nextLine();
