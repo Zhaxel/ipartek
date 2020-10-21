@@ -14,6 +14,8 @@ import com.ipartek.pojo.Perro;
  */
 public class AppPerrera {
 
+	// TODO Añadir convenciones java.
+
 	final static String OPT_SHOW_DOGS = "1";
 	final static String OPT_CREATE_DOG = "2";
 	final static String OPT_DELETE_DOG = "3";
