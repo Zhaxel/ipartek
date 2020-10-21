@@ -30,9 +30,6 @@ import com.ipartek.pojo.Persona;
  */
 public class Ejercicio5 {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);

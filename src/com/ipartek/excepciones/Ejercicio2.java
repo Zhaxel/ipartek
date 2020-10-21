@@ -21,9 +21,6 @@ import java.util.Scanner;
  */
 public class Ejercicio2 {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		String numeroLeidoA, numeroLeidoB;
 		int numeroAConvertido, numeroBConvertido;

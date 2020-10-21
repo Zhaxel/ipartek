@@ -23,12 +23,6 @@ import com.ipartek.pojo.Persona;
  */
 public class Ejercicio4 {
 
-	/**
-	 * 
-	 * 
-	 * 
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		int numberOfPeople = 0;
 		Persona[] people;

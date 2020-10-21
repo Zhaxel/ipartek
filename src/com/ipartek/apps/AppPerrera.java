@@ -10,25 +10,26 @@ import com.ipartek.pojo.Perro;
 
 /**
  * @author Joaquín Ruiz Morín
+ * @version 1.1
  *
  */
 public class AppPerrera {
 
 	// TODO Añadir convenciones java.
 
-	final static String OPT_SHOW_DOGS = "1";
-	final static String OPT_CREATE_DOG = "2";
-	final static String OPT_DELETE_DOG = "3";
-	final static String OPT_UPDATE_DOG = "4";
-	final static String OPT_CLOSE_APP = "5";
-	final static boolean VACCINATED = true;
+	final private static String OPT_SHOW_DOGS = "1";
+	final private static String OPT_CREATE_DOG = "2";
+	final private static String OPT_DELETE_DOG = "3";
+	final private static String OPT_UPDATE_DOG = "4";
+	final private static String OPT_CLOSE_APP = "5";
+	final private static boolean VACCINATED = true;
 
-	static Scanner sc = null;
-	static ArrayList<Perro> list = new ArrayList<Perro>();
-	static Perro dog = null; // Variable para ir creando y recogiendo los perros
-	static String option = ""; // Variable para recoger la opción escogida por el usuario
-	static String tmp = ""; // Variable temporal para recoger datos
-	static int badWay = 0; // Variable-contador para comprobar búsquedas erróneas
+	static private Scanner sc = null;
+	static private ArrayList<Perro> list = new ArrayList<Perro>();
+	static private Perro dog = null; // Variable para ir creando y recogiendo los perros
+	static private String option = ""; // Variable para recoger la opción escogida por el usuario
+	static private String tmp = ""; // Variable temporal para recoger datos
+	static private int badWay = 0; // Variable-contador para comprobar búsquedas erróneas
 
 	public static void main(String[] args) {
 		initApp();
@@ -67,7 +68,7 @@ public class AppPerrera {
 	}// end-main
 
 	/**
-	 * Inicializa perros de prueba. A futuro lo haremos con una base de datos
+	 * Inicializa la App con datos de ejemplo en un {@code ArrayList<Perro>}
 	 */
 	private static void initApp() {
 		final String[] DOGS_NAMES = { "Laika", "Hachiko", "Balto", "Rin tin tin", "Stubby", "Pancho", "Greyfiars Bobby",
@@ -81,9 +82,7 @@ public class AppPerrera {
 	}// end-initApp
 
 	/**
-	 * Método encargado de pintar las opciones del Menú.<br>
-	 * <br>
-	 * Al ser void no aparece {@code @return}
+	 * Muestra por pantalla las opciones escogibles en el menú principal.s
 	 */
 	private static void showMenu() {
 		System.out.println("*******************************");
@@ -96,6 +95,10 @@ public class AppPerrera {
 
 	}// end-showMenu
 
+	/**
+	 * Muestra por pantalla el listado de perros contenidos en la variable
+	 * {@code list}
+	 */
 	private static void showDogs() {
 		for (Perro perro : list) {
 			System.out.println(perro.toString());
@@ -104,6 +107,9 @@ public class AppPerrera {
 		sc.nextLine();
 	}// end-showDogs
 
+	/**
+	 * Permite modificar un sólo perro de la lista, pasando por todos sus atributos.
+	 */
 	private static void updateDog() {
 		boolean located = false; // Varia para comprobar si se ha localizado el perro
 		badWay = 0; // Ponemos a 0 para la nueva búsqueda
@@ -120,7 +126,7 @@ public class AppPerrera {
 				// MODIFICACIÓN NOMBRE
 				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca el nuevo nombre del animal");
-					perro.setName(sc.nextLine());
+					perro.setName(sc.nextLine()); // Recogemos el nombres
 				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
@@ -131,7 +137,7 @@ public class AppPerrera {
 				tmp = sc.nextLine();
 				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca la raza del animal");
-					perro.setRace(sc.nextLine());
+					perro.setRace(sc.nextLine());// Recogemos la raza
 				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
@@ -143,7 +149,7 @@ public class AppPerrera {
 				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca el peso del animal");
 					try {
-						perro.setWeight(Float.parseFloat(sc.nextLine()));
+						perro.setWeight(Float.parseFloat(sc.nextLine())); // Recogemos el peso
 					} catch (NumberFormatException e) {
 						System.err.println("Formato de número no válido. El peso no se ha modificado");
 					} catch (Exception e) {
@@ -158,7 +164,7 @@ public class AppPerrera {
 				System.out.println("¿Está vacunado el perro?\n" + "Sí\n" + "No");
 				tmp = sc.nextLine();
 				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
-					perro.setVaccinated(VACCINATED);
+					perro.setVaccinated(VACCINATED); // Recogemos si está vacunado o no
 				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
@@ -183,6 +189,10 @@ public class AppPerrera {
 		sc.nextLine();
 	}// end-updateDog
 
+	/**
+	 * Selecciona un perro de {@code list} y lo elimina. Filtra por {@code name}
+	 */
+
 	private static void deleteDog() {
 		int badWay = 0; // Ponemos a 0 para la nueva búsqueda
 		System.out.println("Introduzca el nombre del perro que desea eliminar del sistema");
@@ -198,6 +208,7 @@ public class AppPerrera {
 				badWay++;
 			} // end-if
 		} // end-for
+
 		if (badWay >= list.size()) {
 			System.out.println("El perro no ha sido encontrado");
 		} // end-if
@@ -206,6 +217,9 @@ public class AppPerrera {
 		sc.nextLine();
 	}// end-deleteDog
 
+	/**
+	 * Crea un perro de la clase {@code Perro}
+	 */
 	private static void createDog() {
 		dog = new Perro();
 

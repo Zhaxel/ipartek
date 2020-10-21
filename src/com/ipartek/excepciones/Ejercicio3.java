@@ -24,12 +24,6 @@ import java.util.Scanner;
  */
 public class Ejercicio3 {
 
-	/**
-	 * 
-	 * 
-	 * @param args
-	 */
-
 	public static boolean isOK = false;
 
 	public static void main(String[] args) {
