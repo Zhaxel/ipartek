@@ -14,50 +14,53 @@ import com.ipartek.pojo.Perro;
  */
 public class AppPerrera {
 
+	final static String OPT_SHOW_DOGS = "1";
+	final static String OPT_CREATE_DOG = "2";
+	final static String OPT_DELETE_DOG = "3";
+	final static String OPT_UPDATE_DOG = "4";
+	final static String OPT_CLOSE_APP = "5";
+	final static boolean VACCINATED = true;
+
 	static Scanner sc = null;
 	static ArrayList<Perro> list = new ArrayList<Perro>();
 	static Perro dog = null; // Variable para ir creando y recogiendo los perros
 	static String option = ""; // Variable para recoger la opción escogida por el usuario
 	static String tmp = ""; // Variable temporal para recoger datos
-	static boolean on = true; // Variable para controlar si el programa se mantiene encendido
 	static int badWay = 0; // Variable-contador para comprobar búsquedas erróneas
 
 	public static void main(String[] args) {
 		initApp();
+		sc = new Scanner(System.in);
 
 		do {
 			System.out.println("********* APP PERRERA *********");
-			sc = new Scanner(System.in);
+
 			showMenu();
 
-			// TODO Utilizar constantes
 			switch (option) {
-			case "1": // READ
+			case OPT_SHOW_DOGS: // READ
 				showDogs();
 				break;
 
-			case "2": // CREATE
+			case OPT_CREATE_DOG: // CREATE
 				createDog();
 				break;
 
-			case "3": // DELETE
+			case OPT_DELETE_DOG: // DELETE
 				deleteDog();
 				break;
 
-			case "4": // UPDATE
+			case OPT_UPDATE_DOG: // UPDATE
 				updateDog();
 				break;
-			case "5":
-				on = false;
+			case OPT_CLOSE_APP:
+				System.out.println("****** ¡HASTA LA PRÓXIMA! *****");
 				break;
 			default:
-				System.err.println("Ha pasado algo inesperado. Cerrando aplicación");
-				on = false;
+				System.err.println("Opción inesperada. Por favor, escoja un número de la lista.");
 				break;
 			}
-		} while (on);
-
-		System.out.println("****** ¡HASTA LA PRÓXIMA! *****");
+		} while (!OPT_CLOSE_APP.equalsIgnoreCase(option));
 
 	}// end-main
 
@@ -82,10 +85,11 @@ public class AppPerrera {
 	 */
 	private static void showMenu() {
 		System.out.println("*******************************");
-		System.out.println("1.- Listar todos los perros\n" + "2.- Registrar un perro nuevo\n"
-				+ "3.- Dar de baja un perro\n" + "4.- Actualizar perro \n" + "5.- Salir");
+		System.out.println(OPT_SHOW_DOGS + ".- Listar todos los perros\n" + OPT_CREATE_DOG
+				+ ".- Registrar un perro nuevo\n" + OPT_DELETE_DOG + ".- Dar de baja un perro\n" + OPT_UPDATE_DOG
+				+ ".- Modificar datos perro \n" + OPT_CLOSE_APP + ".- Salir");
 		System.out.println("*******************************");
-		// TODO gestionar errores
+
 		option = sc.nextLine();
 
 	}// end-showMenu
@@ -101,66 +105,60 @@ public class AppPerrera {
 	private static void updateDog() {
 		boolean located = false; // Varia para comprobar si se ha localizado el perro
 		badWay = 0; // Ponemos a 0 para la nueva búsqueda
-		dog = new Perro();
 
 		System.out.println("Introduzca el nombre del perro ha modificar:");
 		tmp = sc.nextLine();
 
 		for (Perro perro : list) {
-			if (perro.getName().equals(tmp)) {
+			if (perro.getName().equalsIgnoreCase(tmp)) {
 				located = true;
 				System.out.println("¿Desea cambiarle el nombre?\n" + "Sí\n" + "No");
-				tmp = sc.nextLine().toUpperCase();
+				tmp = sc.nextLine();
 
 				// MODIFICACIÓN NOMBRE
-				if (tmp.equals("SI") || tmp.equals("SÍ")) {
+				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca el nuevo nombre del animal");
-					tmp = sc.nextLine();
-					// TODO Modificar el objeto perro.
-				} else if (tmp.equals("NO")) {
+					perro.setName(sc.nextLine());
+				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
-					// TODO Pensar que syso meter aquí.
-				} else {
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
 				} // end-if
 
 				// MODIFICACIÓN RAZA
 				System.out.println("¿Desea modificar la raza?\n" + "Sí\n" + "No");
-				tmp = sc.nextLine().toUpperCase();
-				if (tmp.equals("SI") || tmp.equals("SÍ")) {
+				tmp = sc.nextLine();
+				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca la raza del animal");
-					tmp = sc.nextLine();
-					// TODO Modificar el objeto perro.
-				} else if (tmp.equals("NO")) {
+					perro.setRace(sc.nextLine());
+				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
-					// TODO Pensar que syso meter aquí.
-				} else {
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
 				} // end-if
 
 				// MODIFICACIÓN PESO
 				System.out.println("¿Desea actualizar el peso?\n" + "Sí\n" + "No");
-				tmp = sc.nextLine().toUpperCase();
-				if (tmp.equals("SI") || tmp.equals("SÍ")) {
+				tmp = sc.nextLine();
+				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
 					System.out.println("Introduzca el peso del animal");
-					tmp = sc.nextLine();
-					// TODO Modificar el objeto perro.
-				} else if (tmp.equals("NO")) {
+					try {
+						perro.setWeight(Float.parseFloat(sc.nextLine()));
+					} catch (NumberFormatException e) {
+						System.err.println("Formato de número no válido. El peso no se ha modificado");
+					} catch (Exception e) {
+						System.out.println("Ha ocurrido algo inesperado.");
+					}
+				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
-					// TODO Pensar que syso meter aquí.
-				} else {
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
 				} // end-if
 
 				// MODIFICACIÓN VACUNA
 				System.out.println("¿Está vacunado el perro?\n" + "Sí\n" + "No");
-				tmp = sc.nextLine().toUpperCase();
-				if (tmp.equals("SI") || tmp.equals("SÍ")) {
-					// TODO Modificar el objeto perro.
-				} else if (tmp.equals("NO")) {
+				tmp = sc.nextLine();
+				if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
+					perro.setVaccinated(VACCINATED);
+				} else if (!tmp.equalsIgnoreCase("NO")) {
 					badWay++;
-					// TODO Pensar que syso meter aquí.
-				} else {
 					System.out.println("Respuesta introducida no válida. Siguiente campo");
 				} // end-if
 
@@ -168,7 +166,6 @@ public class AppPerrera {
 				if (badWay >= 4) {
 					System.out.println("Ninguna modificación realizada");
 				} else {
-					// TODO Reemplazar el perro de la lista por el nuevo Object
 					System.out.println("Perro actualizado correctamente.");
 				} // end-if
 
@@ -187,15 +184,15 @@ public class AppPerrera {
 	private static void deleteDog() {
 		int badWay = 0; // Ponemos a 0 para la nueva búsqueda
 		System.out.println("Introduzca el nombre del perro que desea eliminar del sistema");
-		tmp = sc.nextLine().toUpperCase(); // Ponemos todo a mayúsculas para evitar errores de usuario
+		tmp = sc.nextLine(); // Ponemos todo a mayúsculas para evitar errores de usuario
 
 		for (Perro perro : list) {
-			if (perro.getName().toUpperCase().equals(tmp)) {
+			if (perro.getName().equalsIgnoreCase(tmp)) {
 				System.out.println("Procediendo a eliminar a " + perro.getName() + " del sistema.");
-				list.remove(perro.getName());
+				list.remove(perro);
 				System.out.println("Operacion completada");
+				break;
 			} else {
-				// PERRO NO ENCONTRADO
 				badWay++;
 			} // end-if
 		} // end-for
@@ -211,26 +208,30 @@ public class AppPerrera {
 		dog = new Perro();
 
 		System.out.println("Introduzca el nombre del animal");
-		tmp = sc.nextLine();
-		dog.setName(tmp);
+		dog.setName(sc.nextLine());
 
 		System.out.println("Introduzca la raza del animal");
-		tmp = sc.nextLine();
-		dog.setRace(tmp);
+		dog.setRace(sc.nextLine());
 
 		System.out.println("Introduzca el peso del animal");
-		tmp = sc.nextLine();
-		// TODO CONTROLAR EXCEPCIÓN
-		dog.setWeight(Float.parseFloat(tmp));
-
+		try {
+			dog.setWeight(Float.parseFloat(sc.nextLine()));
+		} catch (NumberFormatException e) {
+			System.err.println(
+					"Formato de número no válido. Peso no añadido. Puede modificar este apartado más adelante.");
+		} catch (Exception e) {
+			System.out.println("Ha ocurrido algo inesperado. Puede modificar este apartado más adelante.");
+		}
+		/*
+		 * TODO Buscar forma de que este mensaje se muestra tras la excepción y no
+		 * antes.
+		 */
 		System.out.println("¿Está vacunado el perro?");
-		tmp = sc.nextLine().toUpperCase();
+		tmp = sc.nextLine();
 
-		if (tmp.equals("SI") || tmp.equals("SÍ")) {
-			dog.setVaccinated(true);
-		} else if (tmp.equals("NO")) {
-			dog.setVaccinated(false);
-		} else {
+		if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
+			dog.setVaccinated(VACCINATED);
+		} else if (!tmp.equalsIgnoreCase("NO")) {
 			System.out.println("La respuesta introducido no es correcta. Puede modificar este apartado más adelante");
 		} // end-if
 
