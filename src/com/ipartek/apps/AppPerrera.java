@@ -15,8 +15,7 @@ import com.ipartek.pojo.Perro;
  */
 public class AppPerrera {
 
-	// TODO Añadir convenciones java.
-
+	// FINAL VARIABLES
 	final private static String OPT_SHOW_DOGS = "1";
 	final private static String OPT_CREATE_DOG = "2";
 	final private static String OPT_DELETE_DOG = "3";
@@ -24,12 +23,14 @@ public class AppPerrera {
 	final private static String OPT_CLOSE_APP = "5";
 	final private static boolean VACCINATED = true;
 
+	// VARIABLES DEL PROGRAMA
 	static private Scanner sc = null;
 	static private ArrayList<Perro> list = new ArrayList<Perro>();
 	static private Perro dog = null; // Variable para ir creando y recogiendo los perros
 	static private String option = ""; // Variable para recoger la opción escogida por el usuario
 	static private String tmp = ""; // Variable temporal para recoger datos
 	static private int badWay = 0; // Variable-contador para comprobar búsquedas erróneas
+	static private boolean located = false; // Variable para comprobar si se ha localizado el perro
 
 	public static void main(String[] args) {
 		initApp();
@@ -111,7 +112,7 @@ public class AppPerrera {
 	 * Permite modificar un sólo perro de la lista, pasando por todos sus atributos.
 	 */
 	private static void updateDog() {
-		boolean located = false; // Varia para comprobar si se ha localizado el perro
+		located = false;
 		badWay = 0; // Ponemos a 0 para la nueva búsqueda
 
 		System.out.println("Introduzca el nombre del perro ha modificar:");
@@ -176,7 +177,6 @@ public class AppPerrera {
 				} else {
 					System.out.println("Perro actualizado correctamente.");
 				} // end-if
-
 			} // end-if
 		} // end-for
 
@@ -192,7 +192,6 @@ public class AppPerrera {
 	/**
 	 * Selecciona un perro de {@code list} y lo elimina. Filtra por {@code name}
 	 */
-
 	private static void deleteDog() {
 		int badWay = 0; // Ponemos a 0 para la nueva búsqueda
 		System.out.println("Introduzca el nombre del perro que desea eliminar del sistema");
@@ -202,6 +201,7 @@ public class AppPerrera {
 			if (perro.getName().equalsIgnoreCase(tmp)) {
 				System.out.println("Procediendo a eliminar a " + perro.getName() + " del sistema.");
 				list.remove(perro);
+				badWay--;
 				System.out.println("Operacion completada");
 				break;
 			} else {
@@ -224,39 +224,49 @@ public class AppPerrera {
 		dog = new Perro();
 
 		System.out.println("Introduzca el nombre del animal");
-		dog.setName(sc.nextLine());
-
-		System.out.println("Introduzca la raza del animal");
-		dog.setRace(sc.nextLine());
-
-		System.out.println("Introduzca el peso del animal");
-		try {
-			dog.setWeight(Float.parseFloat(sc.nextLine()));
-		} catch (NumberFormatException e) {
-			System.err.println(
-					"Formato de número no válido. Peso no añadido. Puede modificar este apartado más adelante.");
-		} catch (Exception e) {
-			System.out.println("Ha ocurrido algo inesperado. Puede modificar este apartado más adelante.");
-		}
-		/*
-		 * TODO Buscar forma de que este mensaje se muestra tras la excepción y no
-		 * antes.
-		 */
-		System.out.println("¿Está vacunado el perro?");
 		tmp = sc.nextLine();
 
-		if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
-			dog.setVaccinated(VACCINATED);
-		} else if (!tmp.equalsIgnoreCase("NO")) {
-			System.out.println("La respuesta introducido no es correcta. Puede modificar este apartado más adelante");
+		// Comprobamos si el perro ya existe en el sistema
+		for (Perro perro : list) {
+			if (perro.getName().equalsIgnoreCase(tmp)) {
+				System.out.println("Lo sentimos, ese perro ya está registrado en el sistema.");
+				located = true;
+			}
+		}
+
+		// Si el perro no existe procedemos a crearlo
+		if (!located) {
+			dog.setName(tmp);
+
+			System.out.println("Introduzca la raza del animal");
+			dog.setRace(sc.nextLine());
+
+			System.out.println("Introduzca el peso del animal");
+			try {
+				dog.setWeight(Float.parseFloat(sc.nextLine()));
+			} catch (NumberFormatException e) {
+				System.err.println(
+						"Formato de número no válido. Peso no añadido. Puede modificar este apartado más adelante.");
+			} catch (Exception e) {
+				System.out.println("Ha ocurrido algo inesperado. Puede modificar este apartado más adelante.");
+			}
+
+			System.out.println("¿Está vacunado el perro?");
+			tmp = sc.nextLine();
+
+			if (tmp.equalsIgnoreCase("SI") || tmp.equalsIgnoreCase("SÍ")) {
+				dog.setVaccinated(VACCINATED);
+			} else if (!tmp.equalsIgnoreCase("NO")) {
+				System.out
+						.println("La respuesta introducida no es correcta. Puede modificar este apartado más adelante");
+			} // end-if
+
+			list.add(dog);
+			System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
+
 		} // end-if
 
-		list.add(dog);
-
-		System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
 		System.out.println("\nPulse enter para volver al menú");
 		sc.nextLine();
-
 	}// end-createDog
-
 }// end-class
