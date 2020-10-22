@@ -2,6 +2,7 @@ package com.ipartek.pojo;
 
 public class Perro {
 
+	private int id; // TODO actualizar constructor, getter y setter
 	private String name;
 	private String race;
 	private String story;
@@ -11,6 +12,7 @@ public class Perro {
 	// Constructor por defecto.
 	public Perro() {
 		super();
+		this.setId(0);
 		this.name = "Desconocido";
 		this.race = "Mestizo";
 		this.story = "Sin historia";
@@ -22,6 +24,16 @@ public class Perro {
 	public Perro(String name) {
 		this(); // Llama al constructor por defecto
 		this.name = name;
+	}
+
+	// GETTERS & SETTERS
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -68,6 +80,8 @@ public class Perro {
 	public void setVaccinated(boolean isVaccinated) {
 		this.isVaccinated = isVaccinated;
 	}
+
+	// OTHER METHODS
 
 	@Override
 	public String toString() {
