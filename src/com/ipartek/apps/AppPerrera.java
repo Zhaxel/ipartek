@@ -32,6 +32,7 @@ public class AppPerrera {
 	static private String option = ""; // Variable para recoger la opción escogida por el usuario
 	static private String answer = ""; // Variable temporal para recoger datos
 	static private int badWay = 0; // Variable-contador para comprobar búsquedas erróneas
+	static private int id = -1; // V
 	static private boolean located = false; // Variable para comprobar si se ha localizado el perro
 
 	public static void main(String[] args) {
@@ -195,25 +196,21 @@ public class AppPerrera {
 	 * Selecciona un perro de {@code list} y lo elimina. Filtra por {@code name}
 	 */
 	private static void deleteDog() {
-		int badWay = 0; // Ponemos a 0 para la nueva búsqueda
-		System.out.println("Introduzca el nombre del perro que desea eliminar del sistema");
-		answer = sc.nextLine(); // Ponemos todo a mayúsculas para evitar errores de usuario
+		System.out.println("Introduzca el identificador del perro que desea eliminar del sistema");
+		id = Integer.parseInt(sc.nextLine());
 
 		for (Perro perro : dogList.getDogsList()) {
-			if (perro.getName().equalsIgnoreCase(answer)) {
-				System.out.println("Procediendo a eliminar a " + perro.getName() + " del sistema.");
-				list.remove(perro);
-				badWay--;
-				System.out.println("Operacion completada");
-				break;
-			} else {
-				badWay++;
+			try {
+				if (dogList.deleteDog(id)) {
+					System.out.println(perro.getName() + " ha sido eliminado del sistema.");
+					break;
+				} else {
+					System.out.println("El perro no ha sido encontrado");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			} // end-if
 		} // end-for
-
-		if (badWay >= dogList.getDogsList().size()) {
-			System.out.println("El perro no ha sido encontrado");
-		} // end-if
 
 		System.out.println("\nPulse enter para volver al menú");
 		sc.nextLine();
@@ -224,10 +221,12 @@ public class AppPerrera {
 	 */
 	private static void createDog() {
 		dog = new Perro();
+
 		System.out.println("Introduzca un identificador numérico para el animal");
+		id = Integer.parseInt(sc.nextLine());
 
 		// Si el perro no existe procedemos a crearlo
-		if (dogList.getDog(Integer.parseInt(sc.nextLine())) == null) {
+		if (dogList.getDog(id) == null) {
 			System.out.println("Introduzca el nombre del animal");
 			dog.setName(sc.nextLine());
 
@@ -259,8 +258,12 @@ public class AppPerrera {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
+			System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
+
+		} else {
+			System.out.println("El perro " + dogList.getDog(id).getName() + " ya está registrado en el sistema.");
 		} // end-if
-		System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
 
 		System.out.println("\nPulse enter para volver al menú");
 		sc.nextLine();

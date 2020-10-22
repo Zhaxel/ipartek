@@ -26,6 +26,12 @@ public class Perro {
 		this.name = name;
 	}
 
+	public Perro(int id, String name) {
+		this(); // Llama al constructor por defecto
+		this.id = id;
+		this.name = name;
+	}
+
 	// GETTERS & SETTERS
 
 	public int getId() {
@@ -85,8 +91,8 @@ public class Perro {
 
 	@Override
 	public String toString() {
-		return "[" + name + "]\n> Raza:\t\t" + race + "\n> Peso:\t\t" + weight + "Kg\n> Vacunado:\t" + isVaccinated
-				+ "\n> Historia:\t" + story;
+		return "[" + name + "]\n>ID: " + id + "\n> Raza:\t\t" + race + "\n> Peso:\t\t" + weight + "Kg\n> Vacunado:\t"
+				+ isVaccinated + "\n> Historia:\t" + story;
 
 	}
 
