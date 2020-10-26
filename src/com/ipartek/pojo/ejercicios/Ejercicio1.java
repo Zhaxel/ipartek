@@ -9,7 +9,7 @@ import com.ipartek.pojo.Perro;
  * La historia de los 8 perros más famosos <br>
  * <br>
  * 
- * Añadirles el nombre y su historia
+ * Añadirles el name y su historia
  * 
  * @author Joaquín Ruiz Morín
  *

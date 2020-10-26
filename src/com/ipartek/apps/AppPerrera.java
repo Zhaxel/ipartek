@@ -118,18 +118,18 @@ public class AppPerrera {
 		located = false;
 		badWay = 0; // Ponemos a 0 para la nueva búsqueda
 
-		System.out.println("Introduzca el nombre del perro ha modificar:");
+		System.out.println("Introduzca el name del perro ha modificar:");
 		answer = sc.nextLine();
 
 		for (Perro perro : dogList.getDogsList()) {
 			if (perro.getName().equalsIgnoreCase(answer)) {
 				located = true;
-				System.out.println("¿Desea cambiarle el nombre?\n" + "Sí\n" + "No");
+				System.out.println("¿Desea cambiarle el name?\n" + "Sí\n" + "No");
 				answer = sc.nextLine();
 
 				// MODIFICACIÓN NOMBRE
 				if (answer.equalsIgnoreCase("SI") || answer.equalsIgnoreCase("SÍ")) {
-					System.out.println("Introduzca el nuevo nombre del animal");
+					System.out.println("Introduzca el nuevo name del animal");
 					perro.setName(sc.nextLine()); // Recogemos el nombres
 				} else if (!answer.equalsIgnoreCase("NO")) {
 					badWay++;
@@ -227,7 +227,7 @@ public class AppPerrera {
 
 		// Si el perro no existe procedemos a crearlo
 		if (dogList.getDog(id) == null) {
-			System.out.println("Introduzca el nombre del animal");
+			System.out.println("Introduzca el name del animal");
 			dog.setName(sc.nextLine());
 
 			System.out.println("Introduzca la raza del animal");

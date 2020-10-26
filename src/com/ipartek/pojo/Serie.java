@@ -4,7 +4,7 @@
 package com.ipartek.pojo;
 
 /**
- * Clase que especifica las características de un objeto serie. El nombre es
+ * Clase que especifica las características de un objeto serie. El name es
  * obligatorio, mientras que el nº de temporadas y la duración de los capítulos
  * vendrá por defecto a 0. La platform será por defecto internet.
  * 

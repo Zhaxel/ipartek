@@ -11,7 +11,7 @@ import com.ipartek.pojo.SoccerPlayer;
 /**
  * 
  * Crear una lista de jugadores de futbol. En dicha lista se guardaran objetos
- * de la clase Jugador, que tendrá los atributos nombre, de tipo Sting y dorsal
+ * de la clase Jugador, que tendrá los atributos name, de tipo Sting y dorsal
  * de tipo int.<br>
  * <br>
  * Solicitar los datos de los jugadores por teclado, y una vez introducido el
@@ -38,7 +38,7 @@ public class Ejercicio2 {
 		System.out.println("********** PROGRAMA EJERCICIO 2 LISTAS **********");
 
 		do {
-			System.out.println("Introduzca el nombre del jugador");
+			System.out.println("Introduzca el name del jugador");
 			name = sc.nextLine();
 
 			System.out.println("Introduzca el dorsal del jugador");

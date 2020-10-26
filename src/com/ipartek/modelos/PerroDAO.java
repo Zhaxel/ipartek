@@ -26,7 +26,7 @@ public interface PerroDAO {
 	 * Crea un {@code Perro} asignándole una id
 	 * 
 	 * @param p Perro con los datos a guardar
-	 * @throws Exception si el nombre del perro ya existe
+	 * @throws Exception si el name del perro ya existe
 	 * @return Perro con ID actualizado
 	 */
 	Perro createDog(Perro p) throws Exception;
@@ -44,7 +44,7 @@ public interface PerroDAO {
 	 * 
 	 * @param p Perro con los nuevos datos
 	 * @return {@code Perro} modificado
-	 * @throws Exception si el Perro no es encontrado o el nombre ya existe.
+	 * @throws Exception si el Perro no es encontrado o el name ya existe.
 	 */
 	Perro updateDog(Perro p) throws Exception;
 

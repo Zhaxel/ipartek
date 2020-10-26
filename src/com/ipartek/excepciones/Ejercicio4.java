@@ -9,7 +9,7 @@ import com.ipartek.pojo.Persona;
 
 /**
  * 
- * * Crea una clase Persona con los atributos nombre y edad. En el método
+ * * Crea una clase Persona con los atributos name y edad. En el método
  * setEdad lanzar una excepción si la edad introducida es menor que 0 o mayor
  * que 120. <br>
  * <br>
@@ -42,8 +42,8 @@ public class Ejercicio4 {
 		for (int i = 0; i < people.length; i++) {
 			// Instaciamos el objeto para evitar NullPointerException
 			people[i] = new Persona();
-			// Configuramos el nombre
-			System.out.println("Introduzca el nombre de la persona nº " + (i + 1));
+			// Configuramos el name
+			System.out.println("Introduzca el name de la persona nº " + (i + 1));
 			people[i].setName(sc.nextLine());
 
 			System.out.println("Introduzca la edad de la persona nº " + (i + 1));

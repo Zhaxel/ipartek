@@ -32,10 +32,10 @@ public interface IFunciones {
 	final int LOTTERY_BONOLOTO = 3;
 
 	/**
-	 * pedir nombre por Scanner
+	 * pedir name por Scanner
 	 * 
-	 * @throws si el nombre es menor de una letra o contiene numeros
-	 * @return nombre escrito
+	 * @throws si el name es menor de una letra o contiene numeros
+	 * @return name escrito
 	 */
 	String askName() throws Exception;
 

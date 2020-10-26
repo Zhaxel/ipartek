@@ -19,19 +19,19 @@ public class Utilidades implements IFunciones {
 		String resul = "";
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Dime tu nombre:");
+		System.out.println("Dime tu name:");
 		resul = sc.nextLine();
 		sc.close();
 
 		if (resul.length() <= 1) {
-			throw new Exception("El nombre es muy corto");
+			throw new Exception("El name es muy corto");
 		}
 
 		for (int i = 0; i < resul.length(); i++) {
 			char letra = resul.charAt(i);
 			boolean isNumber = Character.isDigit(letra);
 			if (isNumber) {
-				throw new Exception("El nombre no puede contener numeros");
+				throw new Exception("El name no puede contener numeros");
 			}
 		}
 
