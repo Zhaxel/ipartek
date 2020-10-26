@@ -5,8 +5,8 @@ public class Persona {
 	final int MINIMUM_AGE = 1;
 	final int MAXIMUM_AGE = 120;
 
-	private String name;
-	private int age;
+	protected String name;
+	protected int age;
 
 	public Persona() {
 		super();
