@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.ipartek.abstractas.Line" project="Ejercicios" 
     file="/Ejercicios/src/com/ipartek/abstractas/Line.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="124" width="135" x="368" y="362"/>    
+    <position height="-1" width="-1" x="529" y="147"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,14 +12,27 @@
   </class>  
   <class id="2" language="java" name="com.ipartek.abstractas.GraphicObject" project="Ejercicios" 
     file="/Ejercicios/src/com/ipartek/abstractas/GraphicObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="159" width="135" x="368" y="163"/>    
+    <position height="-1" width="-1" x="723" y="141"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="3">    
+  <class id="3" language="java" name="com.ipartek.abstractas.ColorLine" project="Ejercicios" 
+    file="/Ejercicios/src/com/ipartek/abstractas/ColorLine.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="302" y="149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="4">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="5">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
