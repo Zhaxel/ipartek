@@ -12,25 +12,30 @@ public class Mammal {
 	protected String name;
 	protected int legs;
 
-	public Mammal(String name) {
+	public Mammal() {
 		super();
+		this.name = "Desconocido";
+	}
+
+	public Mammal(String name) {
+		this();
 		this.name = name;
 		this.legs = 0;
 	}
 
-	public String getNombre() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.name = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getPatas() {
+	public int getLegs() {
 		return legs;
 	}
 
-	public void setPatas(int patas) {
+	public void setLegs(int patas) {
 		this.legs = patas;
 	}
 

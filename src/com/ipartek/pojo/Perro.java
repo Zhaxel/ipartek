@@ -1,9 +1,8 @@
 package com.ipartek.pojo;
 
-public class Perro {
+public class Perro extends Mammal {
 
 	private int id; // TODO actualizar constructor, getter y setter
-	private String name;
 	private String race;
 	private String story;
 	private float weight;
@@ -12,8 +11,7 @@ public class Perro {
 	// Constructor por defecto.
 	public Perro() {
 		super();
-		this.setId(0);
-		this.name = "Desconocido";
+		this.id = 0;
 		this.race = "Mestizo";
 		this.story = "Sin historia";
 		this.weight = 0.0f;
@@ -40,14 +38,6 @@ public class Perro {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getRace() {

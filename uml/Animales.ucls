@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.ipartek.pojo.Perro" project="Ejercicios" 
-    file="/Ejercicios/src/com/ipartek/pojo/Perro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="466" width="187" x="371" y="-37"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="com.ipartek.pojo.Mammal" project="Ejercicios" 
+  <class id="1" language="java" name="com.ipartek.pojo.Mammal" project="Ejercicios" 
     file="/Ejercicios/src/com/ipartek/pojo/Mammal.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="214" width="157" x="598" y="-37"/>    
+    <position height="-1" width="-1" x="601" y="197"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="com.ipartek.pojo.Cat" project="Ejercicios" 
+  <class id="2" language="java" name="com.ipartek.pojo.Cat" project="Ejercicios" 
     file="/Ejercicios/src/com/ipartek/pojo/Cat.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="117" x="598" y="469"/>    
+    <position height="-1" width="-1" x="948" y="406"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.ipartek.pojo.Perro" project="Ejercicios" 
+    file="/Ejercicios/src/com/ipartek/pojo/Perro.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="284" y="441"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -29,8 +29,12 @@
     </display>  
   </class>  
   <generalization id="4">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="5">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
