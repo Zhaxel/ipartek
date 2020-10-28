@@ -33,7 +33,7 @@ public class Ejercicio4 {
 		for (int i = 0; i < SUITES_OF_DECKS.length; i++) {
 			for (int j = 0; j < MAXIMUM_VALUE_CARD; j++) {
 
-				deck.add(new Card(SUITES_OF_DECKS[i], (j + 1)));
+				// deck.add(new Card(SUITES_OF_DECKS[i], (j + 1)));
 
 			} // end-j-for
 		} // end-i-for

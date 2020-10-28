@@ -9,17 +9,18 @@ package com.ipartek.pojo;
  * @author Joaquín Ruiz Morín
  *
  */
+
 public class Card {
 
 	private String suit;
-	private int value;
+	private String value;
 
 	public Card() {
 		super();
 	}
 
-	public Card(String suit, int value) {
-		super();
+	public Card(String suit, String value) {
+		this();
 		this.suit = suit;
 		this.value = value;
 	}
@@ -32,11 +33,11 @@ public class Card {
 		this.suit = suit;
 	}
 
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(int value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
 

@@ -11,6 +11,11 @@ import java.awt.Rectangle;
  */
 public class ColorRectangle extends Rectangle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	void draw() {
 	}
 
