@@ -27,6 +27,7 @@ public class principal {
 
 	static private int r;
 	static private int velocidad;
+	static private boolean drive = true;
 
 	public static void main(String[] args) {
 
@@ -54,11 +55,12 @@ public class principal {
 			velocidad = b.Acelerar(r);
 			if (velocidad == 0) {
 				System.out.println("No se puede acelerar. Velocidad máxima (" + IVehiculo.VEL_MAX_BICI + ") alcanzada");
+				drive = false;
 			} else {
 				b.setVelocidadActual(velocidad);
 			}
 
-		} while (!(b.getVelocidadActual() > IVehiculo.VEL_MAX_BICI) || !(b.getVelocidadActual() == 0));
+		} while (true);
 
 	}
 
