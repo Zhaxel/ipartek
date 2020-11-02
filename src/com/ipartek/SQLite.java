@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.ipartek.pojo.Perro;
 
 /**
  * @author Joaquín Ruiz Morín
@@ -16,7 +19,8 @@ import java.sql.SQLException;
 public class SQLite {
 
 	final static private String URL_DRIVER = "jdbc:sqlite:";
-	final static private String URL_DB = "P:\\SQLiteDDBB\\";
+	// final static private String URL_DB = "P:\\SQLiteDDBB\\";
+	final static private String URL_DB = "db/perrera.db";
 	final static private String DB_NAME = "concesionario.db";
 	final static private String SQL_QUERY = "SELECT * FROM coche";
 
@@ -28,6 +32,7 @@ public class SQLite {
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
+		ArrayList<Perro> dogList = new ArrayList<Perro>();
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -45,8 +50,12 @@ public class SQLite {
 		 * while( rs.next() ) { System.out.println( rs.getInt("id") +
 		 * rs.getString("nombre"));
 		 * 
+		 * pst.close(); rs.close();
+		 * 
 		 * }
 		 */
+
+		con.close();
 
 	}
 

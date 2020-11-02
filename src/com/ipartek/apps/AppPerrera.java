@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.ipartek.modelos.PerroDAOArrayList;
+import com.ipartek.modelos.PerroDAOSQLite;
 import com.ipartek.pojo.Perro;
 
 /**
@@ -27,6 +28,7 @@ public class AppPerrera {
 	// VARIABLES DEL PROGRAMA
 	static private Scanner sc = null;
 	static private PerroDAOArrayList dogList = new PerroDAOArrayList();
+	static private PerroDAOSQLite model = new PerroDAOSQLite();
 	static private ArrayList<Perro> list = new ArrayList<Perro>(); // Temporal. Ayuda a simular BBDD
 	static private Perro dog = null; // Variable para ir creando y recogiendo los perros
 	static private String option = ""; // Variable para recoger la opción escogida por el usuario
@@ -103,7 +105,9 @@ public class AppPerrera {
 	 * {@code list}
 	 */
 	private static void showDogs() {
-		list = dogList.getDogsList();
+
+		list = model.getDogsList();
+
 		for (Perro perro : list) {
 			System.out.println(perro.toString());
 		}
@@ -222,48 +226,65 @@ public class AppPerrera {
 	private static void createDog() {
 		dog = new Perro();
 
-		System.out.println("Introduzca un identificador numérico para el animal");
-		id = Integer.parseInt(sc.nextLine());
-
 		// Si el perro no existe procedemos a crearlo
-		if (dogList.getDog(id) == null) {
-			System.out.println("Introduzca el name del animal");
+
+		do {
+
+			System.out.println("Introduzca el nombre del animal");
 			dog.setName(sc.nextLine());
+			located = false;
 
-			System.out.println("Introduzca la raza del animal");
-			dog.setRace(sc.nextLine());
+			list = model.getDogsList();
 
+			for (Perro perro : list) {
+				if (dog.getName().equals(perro.getName())) {
+					System.out.println("El perro " + perro.getName() + " ya existe en nuestra base de datos.");
+					located = true;
+				}
+			}
+		} while (located);
+
+		System.out.println("Introduzca la raza del animal");
+		dog.setRace(sc.nextLine());
+		if (dog.getRace().isEmpty()) {
+			System.out.println("Raza no introducida. Por defecto será mestizo");
+		}
+
+		do {
 			System.out.println("Introduzca el peso del animal");
 			try {
 				dog.setWeight(Float.parseFloat(sc.nextLine()));
+				if (dog.getWeight() <= 0) {
+					System.out.println("No se pueden introducir valores negativos");
+				}
 			} catch (NumberFormatException e) {
-				System.err.println(
-						"Formato de número no válido. Peso no añadido. Puede modificar este apartado más adelante.");
+				System.err.println("Formato de número no válido.");
 			} catch (Exception e) {
 				System.out.println("Ha ocurrido algo inesperado. Puede modificar este apartado más adelante.");
 			}
+		} while (dog.getWeight() <= 0);
 
-			System.out.println("¿Está vacunado el perro?");
+		do {
+			System.out.println("¿Está vacunado el perro? [Sí / No]");
 			answer = sc.nextLine();
 
 			if (answer.equalsIgnoreCase("SI") || answer.equalsIgnoreCase("SÍ")) {
 				dog.setVaccinated(VACCINATED);
-			} else if (!answer.equalsIgnoreCase("NO")) {
+			} else if (answer.equalsIgnoreCase("NO")) {
+				dog.setVaccinated(!VACCINATED);
+			} else {
 				System.out
 						.println("La respuesta introducida no es correcta. Puede modificar este apartado más adelante");
 			} // end-if
+		} while (!answer.equalsIgnoreCase("SI") && !answer.equalsIgnoreCase("SÍ") && !answer.equalsIgnoreCase("NO"));
 
-			try {
-				dogList.createDog(dog);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			model.createDog(dog);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-			System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
-
-		} else {
-			System.out.println("El perro " + dogList.getDog(id).getName() + " ya está registrado en el sistema.");
-		} // end-if
+		System.out.println("Tu perro " + dog.getName() + " ha sido añadido al sistema.");
 
 		System.out.println("\nPulse enter para volver al menú");
 		sc.nextLine();
