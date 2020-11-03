@@ -11,7 +11,7 @@ public class PerroDAOArrayList implements PerroDAO {
 			"Smoky" };
 
 	@Override
-	public ArrayList<Perro> getDogsList() {
+	public ArrayList<Perro> getList() {
 		if (list != null && list.isEmpty()) {
 
 			for (int i = 0; i < DOGS_NAMES.length; i++) {
@@ -22,7 +22,7 @@ public class PerroDAOArrayList implements PerroDAO {
 	}
 
 	@Override
-	public Perro createDog(Perro p) throws Exception {
+	public Perro create(Perro p) throws Exception {
 
 		list.add(p);
 
@@ -30,8 +30,8 @@ public class PerroDAOArrayList implements PerroDAO {
 	}
 
 	@Override
-	public Perro getDog(int id) {
-		for (Perro perro : this.getDogsList()) {
+	public Perro get(int id) {
+		for (Perro perro : this.getList()) {
 			if (perro.getId() == id) {
 				return perro;
 			}
@@ -40,14 +40,14 @@ public class PerroDAOArrayList implements PerroDAO {
 	}
 
 	@Override
-	public Perro updateDog(Perro p) throws Exception {
+	public Perro update(Perro p) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean deleteDog(int id) throws Exception {
-		for (Perro perro : this.getDogsList()) {
+	public boolean delete(int id) throws Exception {
+		for (Perro perro : this.getList()) {
 			if (perro.getId() == id) {
 				list.remove(perro);
 				return true;

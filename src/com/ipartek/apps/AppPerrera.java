@@ -200,21 +200,36 @@ public class AppPerrera {
 	 * Selecciona un perro de {@code list} y lo elimina. Filtra por {@code name}
 	 */
 	private static void deleteDog() {
-		System.out.println("Introduzca el identificador del perro que desea eliminar del sistema");
-		id = Integer.parseInt(sc.nextLine());
+		do {
+			System.out.println("Introduzca el identificador del perro que desea eliminar del sistema");
+			id = Integer.parseInt(sc.nextLine());
 
-		for (Perro perro : dogList.getDogsList()) {
-			try {
-				if (dogList.deleteDog(id)) {
-					System.out.println(perro.getName() + " ha sido eliminado del sistema.");
-					break;
-				} else {
-					System.out.println("El perro no ha sido encontrado");
+			for (Perro perro : model.getDogsList()) {
+				try {
+					if (model.deleteDog(id)) {
+						do {
+							System.out.println("Por favor, introduzca el nombre del perro a eliminar:");
+							answer = sc.nextLine();
+							if (model.findDogByName(answer)) {
+								located = true;
+								model.deleteDog(perro.getId());
+								System.out.println(
+										"El perro " + perro.getName() + " ha sido eliminado de la base de datos.");
+
+							} else {
+								System.out.println("El perro del nombre ha sido mal escrito.");
+							}
+						} while (!located);
+						break;
+					} else {
+						System.out.println("El identificador no existe en nuestro sistema.");
+						located = false;
+					} // end-if
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} // end-if
-		} // end-for
+			} // end-for
+		} while (!located);
 
 		System.out.println("\nPulse enter para volver al menú");
 		sc.nextLine();

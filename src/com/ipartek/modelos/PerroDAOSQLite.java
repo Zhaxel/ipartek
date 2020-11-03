@@ -21,7 +21,7 @@ public class PerroDAOSQLite implements PerroDAO {
 	private static final String PATH = "db/perrera.db";
 
 	@Override
-	public ArrayList<Perro> getDogsList() {
+	public ArrayList<Perro> getList() {
 		final String SQL = "SELECT id, nombre FROM perro ORDER BY nombre ASC;";
 		ArrayList<Perro> perros = new ArrayList<Perro>();
 
@@ -53,7 +53,7 @@ public class PerroDAOSQLite implements PerroDAO {
 	}
 
 	@Override
-	public Perro getDog(int id) {
+	public Perro get(int id) {
 		Perro perro = null;
 		final String SQL = "SELECT id, nombre FROM perro WHERE id = ?;";
 
@@ -77,7 +77,7 @@ public class PerroDAOSQLite implements PerroDAO {
 	}
 
 	@Override
-	public Perro createDog(Perro p) throws Exception {
+	public Perro create(Perro p) throws Exception {
 		Perro perro = null;
 		final String SQL = "INSERT INTO perro (nombre, peso) VALUES (?, ?);";
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
@@ -94,7 +94,7 @@ public class PerroDAOSQLite implements PerroDAO {
 	}
 
 	@Override
-	public Perro updateDog(Perro p) throws Exception {
+	public Perro update(Perro p) throws Exception {
 		Perro perro = null;
 		final String SQL = "UPDATE perro nombre = ? , peso = ? WHERE id = ?;";
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
@@ -112,7 +112,7 @@ public class PerroDAOSQLite implements PerroDAO {
 	}
 
 	@Override
-	public boolean deleteDog(int id) throws Exception {
+	public boolean delete(int id) throws Exception {
 		boolean resul = false;
 		final String SQL = "DELETE FROM perro WHERE id = ?;";
 		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
@@ -126,6 +126,23 @@ public class PerroDAOSQLite implements PerroDAO {
 
 		}
 		return resul;
+	}
+
+	/**
+	 * Método que localiza perros en la base de datos según un nombre dado
+	 * 
+	 * @param name Nombre del perro a localizar
+	 * @return True si ha encontrado el perro, false en caso contrario
+	 * @throws Exception
+	 */
+	public boolean findDogByName(String name) throws Exception {
+		final String SQL = "SELECT nombre FROM perro WHERE nombre = " + name + ";";
+
+		try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + PATH);
+				PreparedStatement pst = conn.prepareStatement(SQL);) {
+
+			return pst.execute();
+		}
 	}
 
 }
