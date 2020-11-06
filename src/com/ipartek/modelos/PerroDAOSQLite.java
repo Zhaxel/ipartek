@@ -16,7 +16,15 @@ import com.ipartek.pojo.Perro;
  *
  */
 
-public class PerroDAOSQLite implements PerroDAO {
+public class PerroDAOSQLite implements PerroDAO, Singleton<PerroDAOSQLite> {
+
+	private static PerroDAOSQLite INSTANCE = null;
+
+	@Override
+	public Object getInstance() {
+
+		return INSTANCE;
+	}
 
 	private static final String PATH = "db/perrera.db";
 

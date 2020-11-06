@@ -106,7 +106,7 @@ public class AppPerrera {
 	 */
 	private static void showDogs() {
 
-		list = model.getDogsList();
+		list = model.getList();
 
 		for (Perro perro : list) {
 			System.out.println(perro.toString());
@@ -125,7 +125,7 @@ public class AppPerrera {
 		System.out.println("Introduzca el name del perro ha modificar:");
 		answer = sc.nextLine();
 
-		for (Perro perro : dogList.getDogsList()) {
+		for (Perro perro : dogList.getList()) {
 			if (perro.getName().equalsIgnoreCase(answer)) {
 				located = true;
 				System.out.println("¿Desea cambiarle el name?\n" + "Sí\n" + "No");
@@ -204,15 +204,15 @@ public class AppPerrera {
 			System.out.println("Introduzca el identificador del perro que desea eliminar del sistema");
 			id = Integer.parseInt(sc.nextLine());
 
-			for (Perro perro : model.getDogsList()) {
+			for (Perro perro : model.getList()) {
 				try {
-					if (model.deleteDog(id)) {
+					if (model.delete(id)) {
 						do {
 							System.out.println("Por favor, introduzca el nombre del perro a eliminar:");
 							answer = sc.nextLine();
 							if (model.findDogByName(answer)) {
 								located = true;
-								model.deleteDog(perro.getId());
+								model.delete(perro.getId());
 								System.out.println(
 										"El perro " + perro.getName() + " ha sido eliminado de la base de datos.");
 
@@ -249,7 +249,7 @@ public class AppPerrera {
 			dog.setName(sc.nextLine());
 			located = false;
 
-			list = model.getDogsList();
+			list = model.getList();
 
 			for (Perro perro : list) {
 				if (dog.getName().equals(perro.getName())) {
@@ -294,7 +294,7 @@ public class AppPerrera {
 		} while (!answer.equalsIgnoreCase("SI") && !answer.equalsIgnoreCase("SÍ") && !answer.equalsIgnoreCase("NO"));
 
 		try {
-			model.createDog(dog);
+			model.create(dog);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

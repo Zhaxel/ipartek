@@ -11,7 +11,7 @@ import com.ipartek.pojo.Perro;
  * @author Joaquín Ruiz Morín
  *
  */
-public interface IDAO<P> {
+public interface IDAO<P> extends Singleton {
 
 	/**
 	 * Retorna un {@code ArrayList} con todos los perros de la "base de datos". Si
