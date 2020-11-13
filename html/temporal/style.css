@@ -1,0 +1,9 @@
+.box {
+    display: inline-block;  /* algo hibrido entre block e inline, srive para poder dar height y width */
+    width: 25%;
+    margin: 10px;
+
+    background-color: orange;
+    font-size: 2rem;
+    text-align: center;
+}

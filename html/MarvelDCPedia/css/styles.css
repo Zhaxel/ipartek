@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --blanco: #fff;
+}
+
+@media print {
+    body {
+        font-size: 10;
+        color: green;
+    }
+}
+
+header {
+    background-color: peru;
+    color: var(--blanco);
+}
+
+section {
+    background-color: pink;
+}
+
+footer {
+    background-color: black;
+}
